@@ -1,20 +1,20 @@
-# Use the official Node.js image (LTS version recommended)
+# Use an official lightweight Node.js image
 FROM node:18-alpine
 
-# Set working directory inside container
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json first (to leverage caching)
+# Copy package.json and package-lock.json first for caching
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the project files
+# Copy the rest of the source code
 COPY . .
 
-# Expose the port your dev server runs on (change if needed)
-EXPOSE 3000
+# Expose the Vite dev server port
+EXPOSE 8081
 
-# Default command to run the development server
-CMD ["npm", "run", "dev"]
+# Run Vite dev server on 0.0.0.0 so it's accessible externally
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
