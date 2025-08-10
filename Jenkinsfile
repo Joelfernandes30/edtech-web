@@ -2,20 +2,21 @@ pipeline {
     agent any
 
     environment {
-        GCP_PROJECT = "bustracking-467614" // Your GCP Project ID
+        GCP_PROJECT = "bustracking-467614"
+        GCP_REGION  = "us-central1"
+        REPO_NAME   = "edtech-repo"  // New Artifact Registry repository
+        IMAGE_NAME  = "edtech-web"
         GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
-        IMAGE_NAME = "edtech-web"
-        IMAGE_TAG = "latest"
     }
 
     stages {
-        stage("Cloning Github repo to Jenkins") {
+
+        stage("Clone Repo") {
             steps {
                 script {
-                    echo '📥 Cloning the repository...'
+                    echo "📦 Cloning the repository..."
                     checkout scmGit(
                         branches: [[name: '*/main']],
-                        extensions: [],
                         userRemoteConfigs: [[
                             credentialsId: 'github-token',
                             url: 'https://github.com/Joelfernandes30/edtech-web.git'
@@ -25,67 +26,68 @@ pipeline {
             }
         }
 
-        stage('Installing npm dependencies & Building Project') {
+        stage("Install Dependencies") {
             steps {
                 script {
-                    echo '📦 Installing npm dependencies & Building Project...'
+                    echo "📥 Installing npm dependencies..."
                     sh '''
-                        npm install
-                        npm run build || echo "No build script found, skipping build step..."
+                    npm install
+                    npm run build || echo "No build step defined"
                     '''
                 }
             }
         }
 
-        stage('Building and Pushing Docker Image to GCR') {
+        stage("Build & Push Docker Image to Artifact Registry") {
             steps {
                 withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     script {
-                        echo '🐳 Building and Pushing Docker Image to GCR...'
+                        echo "🐳 Building and pushing Docker image to AR..."
                         sh '''
-                            export PATH=$PATH:${GCLOUD_PATH}
+                        export PATH=$PATH:${GCLOUD_PATH}
 
-                            gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-                            gcloud config set project ${GCP_PROJECT}
-                            gcloud auth configure-docker --quiet
+                        # Authenticate with GCP
+                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                        gcloud config set project ${GCP_PROJECT}
 
-                            sudo docker build -t gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_TAG} .
-                            sudo docker push gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_TAG}
+                        # Create AR repository if not exists
+                        gcloud artifacts repositories create ${REPO_NAME} \
+                            --repository-format=docker \
+                            --location=${GCP_REGION} \
+                            --description="Docker repository for edtech-web" || true
+
+                        # Configure docker to authenticate with AR
+                        gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev --quiet
+
+                        # Build and push
+                        sudo docker build -t ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest .
+                        sudo docker push ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest
                         '''
                     }
                 }
             }
         }
 
-        stage('Deploy to Google Cloud Run') {
+        stage("Deploy to Cloud Run") {
             steps {
                 withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     script {
-                        echo '🚀 Deploying to Google Cloud Run...'
+                        echo "🚀 Deploying to Cloud Run..."
                         sh '''
-                            export PATH=$PATH:${GCLOUD_PATH}
+                        export PATH=$PATH:${GCLOUD_PATH}
 
-                            gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-                            gcloud config set project ${GCP_PROJECT}
+                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                        gcloud config set project ${GCP_PROJECT}
 
-                            gcloud run deploy ${IMAGE_NAME} \
-                                --image=gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:${IMAGE_TAG} \
-                                --platform=managed \
-                                --region=us-central1 \
-                                --allow-unauthenticated
+                        gcloud run deploy ${IMAGE_NAME} \
+                            --image=${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest \
+                            --platform=managed \
+                            --region=${GCP_REGION} \
+                            --allow-unauthenticated
                         '''
                     }
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo "✅ Deployment completed successfully!"
-        }
-        failure {
-            echo "❌ Build or Deployment failed. Check logs."
         }
     }
 }
