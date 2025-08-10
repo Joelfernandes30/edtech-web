@@ -39,34 +39,36 @@ pipeline {
         }
 
         stage("Build & Push Docker Image to Artifact Registry") {
-            steps {
-                withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-                    script {
-                        echo "🐳 Building and pushing Docker image to AR..."
-                        sh '''
-                        export PATH=$PATH:${GCLOUD_PATH}
+    steps {
+        withCredentials([file(credentialsId: 'gcp-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+            script {
+                echo "🐳 Building and pushing Docker image to AR..."
+                sh '''
+                export PATH=$PATH:${GCLOUD_PATH}
 
-                        # Authenticate with GCP
-                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
-                        gcloud config set project ${GCP_PROJECT}
+                # Authenticate with GCP
+                gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                gcloud config set project ${GCP_PROJECT}
 
-                        # Create AR repository if not exists
-                        gcloud artifacts repositories create ${REPO_NAME} \
-                            --repository-format=docker \
-                            --location=${GCP_REGION} \
-                            --description="Docker repository for edtech-web" || true
+                # Create AR repository if not exists
+                gcloud artifacts repositories create ${REPO_NAME} \
+                    --repository-format=docker \
+                    --location=${GCP_REGION} \
+                    --description="Docker repository for edtech-web" || true
 
-                        # Configure docker to authenticate with AR
-                        gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev --quiet
+                # Configure docker system-wide for root (sudo)
+                gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev --quiet --project=${GCP_PROJECT}
+                sudo mkdir -p /root/.docker
+                sudo cp -r ~/.docker/* /root/.docker/
 
-                        # Build and push
-                        sudo docker build -t ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest .
-                        sudo docker push ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest
-                        '''
-                    }
-                }
+                # Build and push
+                sudo docker build -t ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest .
+                sudo docker push ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${REPO_NAME}/${IMAGE_NAME}:latest
+                '''
             }
         }
+    }
+}
 
         stage("Deploy to Cloud Run") {
             steps {
