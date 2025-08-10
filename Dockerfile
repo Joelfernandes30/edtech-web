@@ -16,5 +16,5 @@ COPY . .
 # Expose the Vite dev server port
 EXPOSE 8081
 
-# Run Vite dev server on 0.0.0.0 so it's accessible externally
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Run Vite dev server on 0.0.0.0 and force port 8081
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "8081"]
