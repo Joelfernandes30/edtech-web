@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GCLOUD_PATH = "/usr/bin"       // Change if gcloud is in a different location
-        GCP_PROJECT = "your-gcp-project-id"
+        GCP_PROJECT = "bustracking-467614"
         IMAGE_NAME  = "edtech-web"
         IMAGE_TAG   = "latest"
     }
