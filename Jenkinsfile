@@ -38,7 +38,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:latest .
+                    sudo docker build -t gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:latest .
                 '''
             }
         }
@@ -47,7 +47,7 @@ pipeline {
             steps {
                 sh '''
                     ${GCLOUD_PATH}/gcloud auth configure-docker gcr.io --quiet
-                    docker push gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:latest
+                    sudo docker push gcr.io/${GCP_PROJECT}/${IMAGE_NAME}:latest
                 '''
             }
         }
