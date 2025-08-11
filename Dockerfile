@@ -1,20 +1,20 @@
-# Use an official lightweight Node.js image
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json first for caching
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the source code
 COPY . .
 
-# Expose the Vite dev server port
-EXPOSE 8081
+# Build the production files
+RUN npm run build
 
-# Run Vite dev server on 0.0.0.0 and force port 8081
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "8081"]
+# Install a lightweight static server
+RUN npm install -g serve
+
+# Expose Cloud Run's default port
+EXPOSE 8080
+
+# Serve the built app
+CMD ["serve", "-s", "dist", "-l", "8080"]
