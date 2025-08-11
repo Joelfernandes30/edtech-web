@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        VENV_DIR    = 'venv'
         GCP_PROJECT = "bustracking-467614"
         GCP_REGION  = "us-central1"
         REPO_NAME   = "edtech-repo"
@@ -27,15 +26,13 @@ pipeline {
             }
         }
 
-        stage("Setting up Virtual Environment & Installing Dependencies") {
+        stage("Install npm Dependencies") {
             steps {
                 script {
-                    echo '⚙️ Setting up virtual environment...'
+                    echo '📥 Installing npm dependencies...'
                     sh '''
-                    python -m venv ${VENV_DIR}
-                    . ${VENV_DIR}/bin/activate
-                    pip install --upgrade pip
-                    pip install -e .
+                    npm install
+                    npm run build || echo "No build step defined"
                     '''
                 }
             }
