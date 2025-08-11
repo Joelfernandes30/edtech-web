@@ -19,7 +19,7 @@ pipeline {
                         branches: [[name: '*/main']],
                         userRemoteConfigs: [[
                             credentialsId: 'github-token',
-                            url: 'https://github.com/Joelfernandes30/my-mlops-project1.git'
+                            url: 'https://github.com/Joelfernandes30/edtech-web.git'
                         ]]
                     )
                 }
