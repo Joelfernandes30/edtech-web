@@ -54,10 +54,10 @@ const Register = () => {
 
   try {
     await emailjs.send(
-      "service_n9z5rzg",     // replace with actual service ID
-      "template_a0ke5pf",    // replace with registration template ID
+      "service_4ew07pp",     // replace with actual service ID
+      "template_0fjvnl8",    // replace with registration template ID
       emailParams,
-      "ngbxDDU3E7ue3VkLR"        // replace with your public API key
+      "fvK7lDFpyfz-0msvO"        // replace with your public API key
     );
     
     toast({
