@@ -61,7 +61,7 @@ const Index = () => {
       {/* Hero Section */}
      {/* Hero Section - Replaced with TAP ACADEMY version */}
 <section className="relative bg-background text-white overflow-hidden">
-  <div className="absolute inset-0 bg-blue-900/100"></div>
+  <div className="absolute inset-0 bg-blue-800/100"></div>
 
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -112,11 +112,11 @@ const Index = () => {
             <span className="mr-2">✨</span> Simplify Employment
           </p>
           <p className="text-xl text-blue-200">
-            The Best Institute For Java Full Stack Developer Course
+            The Best Institute For Complete Technical Courses
           </p>
         </div>
         <p className="text-lg text-blue-100 mb-8">
-          Trusted by over <span className="font-bold text-yellow-300">75,000+</span> students across India
+          Trusted by over <span className="font-bold text-yellow-300">5,000+</span> students across India
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <Link to="/register">

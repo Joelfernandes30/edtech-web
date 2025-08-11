@@ -68,13 +68,13 @@ export const Footer = () => {
             <div className="space-y-2 text-gray-300">
               <p>📧info@techmiyasolutions.com</p>
               <p>📞 +91 6361987951</p>
-              <p>📍 28th Main Rd, 3rd Phase, Jayanagar, Bengaluru, Karnataka 560069</p>
+              <p>📍 Techmiya Solutions, 28th Main Rd, S & C Cross A Road, Jayanagar 9th Block, Bengaluru, Karnataka 560069</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Tech Miya. All rights reserved.</p>
+          <p>&copy; 2025 Techmiya. All rights reserved.</p>
         </div>
       </div>
     </footer>

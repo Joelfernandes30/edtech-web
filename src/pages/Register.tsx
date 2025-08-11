@@ -96,7 +96,7 @@ const Register = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Register for Demo
+            Register Now
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Take the first step towards your tech career. Register for a free demo 
@@ -113,7 +113,7 @@ const Register = () => {
           >
             <Card className="bg-white shadow-xl hover:shadow-2xl transition-all duration-300">
               <CardHeader>
-                <CardTitle className="text-2xl">Demo Registration</CardTitle>
+                <CardTitle className="text-2xl">Registration</CardTitle>
                 <CardDescription>
                   Fill out the form below and we'll contact you to schedule your personalized demo session.
                 </CardDescription>
@@ -238,7 +238,7 @@ const Register = () => {
                       disabled={isSubmitting}
                       className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 text-lg transition-all duration-300"
                     >
-                      {isSubmitting ? "Submitting..." : "Register for Demo"}
+                      {isSubmitting ? "Submitting..." : "Register"}
                     </Button>
                   </motion.div>
                 </form>
