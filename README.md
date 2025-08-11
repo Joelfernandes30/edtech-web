@@ -1,73 +1,137 @@
-# Welcome to your Lovable project
 
-## Project info
+---
 
-**URL**: https://lovable.dev/projects/4674c82e-5b6e-4f51-b575-ff95a1066155
+````markdown
+# Techmiya Website
 
-## How can I edit this code?
+A modern web application built with **Vite**, **React**, **TypeScript**, **shadcn-ui**, and **Tailwind CSS**.  
+Originally generated with Lovable, now fully configured as a standard NPM project for local development and deployment to Cloud Run or any static hosting.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 Features
+- **Vite + React + TypeScript** for fast builds and development
+- **Tailwind CSS** for styling
+- **shadcn-ui** components
+- **Lovable component tagger** for enhanced UI building
+- Ready for **Cloud Run** deployment with production build
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4674c82e-5b6e-4f51-b575-ff95a1066155) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠 Prerequisites
+- **Node.js** and **npm** installed  
+  Install via [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) for convenience.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## 📦 Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Step 1: Clone the repository
 git clone <YOUR_GIT_URL>
+cd techmiya-website
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Step 2: Install dependencies
+npm install
+````
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 💻 Development
+
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+This starts the development server at `http://localhost:8080` with hot reloading.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 🏗 Build for Production
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+npm run build
+```
 
-## What technologies are used for this project?
+Builds the app into the `dist/` folder.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 👀 Preview Production Build
 
-## How can I deploy this project?
+```sh
+npm run preview
+```
 
-Simply open [Lovable](https://lovable.dev/projects/4674c82e-5b6e-4f51-b575-ff95a1066155) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 🐳 Deploy to Cloud Run
 
-Yes, you can!
+1. **Dockerfile** example:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+   ```dockerfile
+   FROM node:18-alpine
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+   WORKDIR /app
+
+   COPY package*.json ./
+   RUN npm install
+
+   COPY . .
+
+   RUN npm run build
+   RUN npm install -g serve
+
+   EXPOSE 8080
+   CMD ["serve", "-s", "dist", "-l", "8080"]
+   ```
+
+2. **Deploy with gcloud**:
+
+   ```sh
+   gcloud run deploy techmiya-website \
+     --image=gcr.io/<YOUR_PROJECT_ID>/techmiya-website \
+     --platform=managed \
+     --region=us-central1 \
+     --allow-unauthenticated
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+techmiya-website/
+├── src/                # Application source code
+├── public/             # Static assets
+├── dist/               # Production build output
+├── package.json        # Project metadata and scripts
+├── vite.config.ts      # Vite configuration
+├── tailwind.config.js  # Tailwind configuration
+└── README.md           # Project documentation
+```
+
+---
+
+## 🛠 Technologies Used
+
+* [Vite](https://vitejs.dev/)
+* [React](https://react.dev/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [shadcn-ui](https://ui.shadcn.com/)
+* [Lovable Tagger](https://lovable.dev/)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+```
+
+---
+
+If you want, I can also **embed the Cloud Run Jenkins pipeline instructions** directly into this `README.md` so your CI/CD flow is fully documented. That way, anyone can deploy it straight from Jenkins.  
+Do you want me to add that section?
+```
