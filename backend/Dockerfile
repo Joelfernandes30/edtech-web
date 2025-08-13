@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 5000
 
-# Use PORT from Cloud Run
-CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 4 app:app"]
+# Command to run the app
+CMD ["python", "app.py"]
