@@ -5,13 +5,7 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
-CORS(app, origins=[
-    "https://techmiyaedtech.com",
-    "http://localhost:8080",
-    "http://localhost:5000",
-    "http://34.60.27.209:8080",
-    "http://34.60.27.209:5000"
-])
+CORS(app)
 
 # MongoDB connection
 mongo_uri = "mongodb+srv://techmiyaedtech:gW6aIInda5rYU6T3@cluster0.ofgnlod.mongodb.net/"
