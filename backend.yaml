@@ -1,3 +1,4 @@
-CORS_ALLOWED_ORIGINS=https://techmiyaedtech.com,http://localhost:8080
-PORT=8080
-MONGO_URL=mongodb+srv://techmiyaedtech:gW6aIInda5rYU6T3@cluster0.ofgnlod.mongodb.net/
+CORS_ALLOWED_ORIGINS: "https://techmiyaedtech.com,http://localhost:8080"
+PORT: "8080"
+MONGO_URL: "mongodb+srv://techmiyaedtech:gW6aIInda5rYU6T3@cluster0.ofgnlod.mongodb.net/"
+
