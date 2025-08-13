@@ -5,12 +5,17 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 
-
 app = Flask(__name__)
 
 load_dotenv()
 
-CORS(app,origins=["https://techmiyaedtech.com", "http://localhost:8080","http://localhost:5000","http://34.60.27.209:8080","http://34.60.27.209:5000"])  # Allow frontend to communicate with backend
+CORS(app, origins=[
+    "https://techmiyaedtech.com",
+    "http://localhost:8080",
+    "http://localhost:5000",
+    "http://34.60.27.209:8080",
+    "http://34.60.27.209:5000"
+])  # Allow frontend to communicate with backend
 
 # MongoDB connection
 mongo_uri = os.getenv("MONGO_URL")
@@ -40,6 +45,6 @@ def register():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8080)
+# REMOVE the following block completely
+# if __name__ == "__main__":
+#     app.run(debug=True, host="0.0.0.0", port=8080)
