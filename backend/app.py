@@ -20,6 +20,10 @@ client = MongoClient(mongo_uri)
 db = client["TechMiyaDB"]  # Database name
 collection = db["registrations"]  # Collection name
 
+@app.route("/"):
+def home():
+    return "hi"
+
 @app.route("/register", methods=["POST"])
 def register():
     try:
