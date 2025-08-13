@@ -3,15 +3,18 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+
 
 app = Flask(__name__)
 
+load_dotenv()
 
 CORS(app,origins=["https://techmiyaedtech.com", "http://localhost:8080","http://localhost:5000"])  # Allow frontend to communicate with backend
 
 # MongoDB connection
-MONGO_URL = "mongodb+srv://techmiyaedtech:gW6aIInda5rYU6T3@cluster0.ofgnlod.mongodb.net/"  # Replace with your actual connection string
-client = MongoClient(MONGO_URL)
+mongo_uri = os.getenv("MONGO_URL")
+client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
 db = client["TechMiyaDB"]  # Database name
 collection = db["registrations"]  # Collection name
 
