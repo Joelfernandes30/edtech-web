@@ -19,8 +19,9 @@ RUN pip install --no-cache-dir -r requirements.txt gunicorn
 COPY . .
 
 # Expose backend port
-EXPOSE 5000
 
-# Run with Gunicorn in production mode
-# "app:app" means app.py file and app = Flask(__name__) instance
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "app:app"]
+
+EXPOSE 8080
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 4 app:app"]
+
+
