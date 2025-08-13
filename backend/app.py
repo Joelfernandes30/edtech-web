@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 load_dotenv()
 
-CORS(app,origins=["https://techmiyaedtech.com", "http://localhost:8080","http://localhost:5000"])  # Allow frontend to communicate with backend
+CORS(app,origins=["https://techmiyaedtech.com", "http://localhost:8080","http://localhost:5000","http://34.60.27.209:8080","http://34.60.27.209:5000"])  # Allow frontend to communicate with backend
 
 # MongoDB connection
 mongo_uri = os.getenv("MONGO_URL")
