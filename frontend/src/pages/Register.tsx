@@ -35,6 +35,12 @@
       "Aptitude Training",
       "Cloud Computing (AWS)",
       "Mobile App Development",
+      "DevOps",
+      "MLOps",
+      "Generative AI",
+      "Embedded Systems and IoT",
+      "Robotics and Automation",
+      "Software Testing"
     ];
 
     const handleInputChange = (field: string, value: string) => {
@@ -116,7 +122,7 @@
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Take the first step towards your tech career. Register for a free demo 
-              session and discover how Tech Miya can transform your future.
+              session and discover how Techmiya can transform your future.
             </p>
           </motion.div>
 

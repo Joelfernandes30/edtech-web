@@ -23,13 +23,13 @@ export const Footer = () => {
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 Facebook
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                Twitter
+              <a href="https://www.youtube.com/@TechMiyaProjects" className="text-gray-300 hover:text-white transition-colors">
+                Youtube
               </a>
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/techmiya_edtech" className="text-gray-300 hover:text-white transition-colors">
                 Instagram
               </a>
             </div>

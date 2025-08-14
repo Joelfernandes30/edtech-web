@@ -6,99 +6,88 @@ const Reviews = () => {
   const reviews = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      role: "Software Developer at Google",
+      name: "Adil T A",
+      role: "Software Developer at Techmiya",
       course: "Full Stack Development",
       rating: 5,
-      content: "Tech Miya completely transformed my career. I went from having no programming experience to landing a job at Google in just 8 months. The instructors are incredibly knowledgeable and the hands-on approach really helped me understand complex concepts. The career support team was amazing too - they helped me prepare for interviews and even connected me with recruiters.",
+      content: "Techmiya completely transformed my career. I went from having no programming experience to landing a job at Google in just 8 months. The instructors are incredibly knowledgeable and the hands-on approach really helped me understand complex concepts. The career support team was amazing too - they helped me prepare for interviews and even connected me with recruiters.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100",
-      date: "December 2023",
-      beforeJob: "Marketing Coordinator",
-      afterSalary: "$120,000/year",
+      date: "December 2024",
+      
     },
     {
       id: 2,
-      name: "Michael Chen",
+      name: "Parvez Aktar",
       role: "Data Scientist at Microsoft",
       course: "Data Science & Analytics",
       rating: 5,
       content: "The Data Science program at Tech Miya is outstanding. The curriculum is up-to-date with industry standards and the projects we worked on were directly applicable to real-world scenarios. What I loved most was the personalized attention from instructors and the collaborative learning environment. The job placement assistance was exceptional.",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
       date: "November 2023",
-      beforeJob: "Business Analyst",
-      afterSalary: "$110,000/year",
+      
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
-      role: "Full Stack Developer at Amazon",
+      name: "Mudasir Khan",
+      role: "Full Stack Developer at Novotech Robo",
       course: "Full Stack Development",
       rating: 5,
       content: "From zero to hero in just 6 months! Tech Miya's Full Stack program is incredibly comprehensive. The way they structure the learning path makes complex topics easy to understand. The portfolio projects I built during the course were instrumental in landing my job at Amazon. Highly recommend to anyone looking to break into tech!",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100",
-      date: "October 2023",
-      beforeJob: "Retail Manager",
-      afterSalary: "$115,000/year",
+      date: "October 2024",
+
     },
     {
       id: 4,
-      name: "David Kumar",
-      role: "Java Developer at Infosys",
+      name: "Joel Fernandes",
+      role: "Python Developer at X-Ciencia Technologies",
       course: "Java Programming",
       rating: 5,
       content: "Best decision I ever made! The Java course at Tech Miya is thorough and practical. The instructors have real industry experience and they share valuable insights beyond just coding. The mock interviews and technical preparation sessions were extremely helpful for my job search.",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100",
       date: "September 2023",
-      beforeJob: "Customer Support",
-      afterSalary: "$85,000/year",
     },
     {
       id: 5,
-      name: "Priya Sharma",
+      name: "Arshiya",
       role: "Cloud Engineer at IBM",
       course: "Cloud Computing (AWS)",
       rating: 5,
       content: "The AWS course exceeded my expectations. The hands-on labs and real cloud projects gave me confidence to work with enterprise-level infrastructure. The certification preparation was excellent and I passed my AWS exam on the first try. Tech Miya truly prepares you for success.",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100",
       date: "August 2023",
-      beforeJob: "System Administrator",
-      afterSalary: "$95,000/year",
+
     },
     {
       id: 6,
-      name: "James Wilson",
+      name: "Sana",
       role: "Mobile App Developer at Uber",
       course: "Mobile App Development",
       rating: 5,
-      content: "Tech Miya's mobile development course is top-notch. Learning both React Native and Flutter gave me a competitive edge in the job market. The projects we built were impressive enough to showcase to potential employers. The instructors are always available to help and provide excellent guidance.",
+      content: "Techmiya's mobile development course is top-notch. Learning both React Native and Flutter gave me a competitive edge in the job market. The projects we built were impressive enough to showcase to potential employers. The instructors are always available to help and provide excellent guidance.",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
       date: "July 2023",
-      beforeJob: "Graphic Designer",
-      afterSalary: "$105,000/year",
     },
     {
       id: 7,
-      name: "Lisa Thompson",
-      role: "Software Engineer at Netflix",
+      name: "Ganavi",
+      role: "Software Engineer at Techmiya",
       course: "Full Stack Development",
       rating: 5,
       content: "Incredible learning experience! The curriculum is well-structured and the pace is perfect for working professionals. I was able to transition from accounting to software engineering successfully. The support from the Tech Miya team throughout my journey was phenomenal.",
       avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100",
       date: "June 2023",
-      beforeJob: "Accountant",
-      afterSalary: "$125,000/year",
     },
     {
       id: 8,
-      name: "Alex Martinez",
-      role: "Data Analyst at Tesla",
-      course: "Data Science & Analytics",
+      name: "Syed Kashif",
+      role: "Digital Marketing",
+      course: "Digital Marketing",
       rating: 5,
       content: "The hands-on approach to learning data science at Tech Miya is unmatched. Working with real datasets and solving actual business problems prepared me perfectly for my role at Tesla. The instructors are industry experts who provide valuable mentorship beyond just technical skills.",
       avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
       date: "May 2023",
-      beforeJob: "Sales Representative",
-      afterSalary: "$90,000/year",
+
     },
   ];
 
@@ -184,12 +173,11 @@ const Reviews = () => {
                   
                   <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
                     <div>
-                      <p className="text-sm text-gray-500">Previous Role:</p>
-                      <p className="font-semibold">{review.beforeJob}</p>
+                      
+                      
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">Current Salary:</p>
-                      <p className="font-semibold text-green-600">{review.afterSalary}</p>
+   
                     </div>
                   </div>
                 </CardContent>

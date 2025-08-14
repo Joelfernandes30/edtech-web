@@ -50,10 +50,10 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   try {
     await emailjs.send(
-      "service_n9z5rzg",     // replace with actual service ID
-      "template_8nr36xg",    // replace with actual template ID
+      "service_4ew07pp",     // replace with actual service ID
+      "template_0fjvnl8",    // replace with actual template ID
       emailParams,
-      "ngbxDDU3E7ue3VkLR"      // replace with your public API key
+      "fvK7lDFpyfz-0msvO"      // replace with your public API key
     );
     toast({
       title: "Message Sent Successfully! ✉️",
@@ -104,7 +104,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <CardTitle>Email Us</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-2">info.@techmiya_edtech</p>
+                <p className="text-gray-600 mb-2">info.@techmiyaedtech.com</p>
                
               </CardContent>
             </Card>
@@ -117,8 +117,8 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <CardTitle>Call Us</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-2">+1 (555) 123-4567</p>
-                <p className="text-gray-600">+1 (555) 987-6543</p>
+                <p className="text-gray-600 mb-2">+91-6361987951</p>
+                <p className="text-gray-600">+91-7338631971</p>
               </CardContent>
             </Card>
 
@@ -131,7 +131,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               </CardHeader>
               <CardContent>
                 
-                <p className="text-gray-600">28th Main Rd, 3rd Phase, Jayanagar, Bengaluru, Karnataka 560069</p>
+                <p className="text-gray-600">Techmiya Solutions, 28th Main Rd, Jayanagar 9th Block, Near Jayadeva metro station, Bengaluru, Karnataka 560069</p>
               </CardContent>
             </Card>
           </div>
@@ -273,14 +273,14 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <a
-                    href="tel:+15551234567"
+                    href="tel:+916361987951"
                     className="flex items-center space-x-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
                   >
                     <span className="text-xl">📞</span>
                     <span>Call us now</span>
                   </a>
                   <a
-                    href="mailto:info@techmiya.com"
+                    href="mailto:manager@techmiyaprojects.com"
                     className="flex items-center space-x-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
                   >
                     <span className="text-xl">✉️</span>
